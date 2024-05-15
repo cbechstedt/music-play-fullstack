@@ -1,5 +1,6 @@
 package com.christian.musicplayapi.services;
 
+import com.christian.musicplayapi.exceptions.FavouriteNotFoundException;
 import com.christian.musicplayapi.models.entities.Favourite;
 import com.christian.musicplayapi.models.repositories.FavouriteRepository;
 import java.util.List;
@@ -34,6 +35,7 @@ public class FavouriteService {
   }
 
   public void delete(long id) {
-    favouriteRepository.deleteById(id);
+    Favourite favourite = findById(id);
+    favouriteRepository.delete(favourite);
   }
 }

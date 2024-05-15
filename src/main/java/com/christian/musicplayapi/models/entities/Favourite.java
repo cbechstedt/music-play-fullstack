@@ -1,10 +1,13 @@
 package com.christian.musicplayapi.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "favourites")
@@ -14,6 +17,10 @@ public class Favourite {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private String name;
+
+  @ManyToMany(mappedBy = "favourites")
+  @JsonIgnore
+  private List<User> users;
 
   public Favourite(Long id, String name) {
     this.id = id;

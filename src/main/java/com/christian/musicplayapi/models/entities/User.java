@@ -5,7 +5,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -18,6 +22,12 @@ public class User {
   private String email;
   private String password;
   private String username;
+
+  @ManyToMany
+  @JoinTable(name = "user_favourite",
+      joinColumns = @JoinColumn(name = "user_id"),
+      inverseJoinColumns = @JoinColumn(name = "favourite_id"))
+  private List<Favourite> favourites;
 
   public User(Long id, String email, String password, String username) {
     this.id = id;

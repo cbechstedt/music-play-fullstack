@@ -11,4 +11,9 @@ public class ControllerAdviceHandler {
   public ResponseEntity<String> handleUserNotFound(UserNotFoundException e) {
     return ResponseEntity.status(404).body(e.getMessage());
   }
+
+  @ExceptionHandler(FavouriteNotFoundException.class)
+  public ResponseEntity<String> handleFavouriteNotFound(FavouriteNotFoundException e) {
+    return ResponseEntity.status(404).body(e.getMessage());
+  }
 }
