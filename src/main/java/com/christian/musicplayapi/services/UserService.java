@@ -1,7 +1,9 @@
 package com.christian.musicplayapi.services;
 
 import com.christian.musicplayapi.dtos.UserRequestDto;
+import com.christian.musicplayapi.exceptions.FavouriteNotFoundException;
 import com.christian.musicplayapi.exceptions.UserNotFoundException;
+import com.christian.musicplayapi.models.entities.Favourite;
 import com.christian.musicplayapi.models.entities.User;
 import com.christian.musicplayapi.models.repositories.UserRepository;
 import java.util.List;
@@ -13,10 +15,12 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
   private final UserRepository userRepository;
+  private final FavouriteService favouriteService;
 
   @Autowired
-  public UserService(UserRepository userRepository) {
+  public UserService(UserRepository userRepository, FavouriteService favouriteService) {
     this.userRepository = userRepository;
+    this.favouriteService = favouriteService;
   }
 
   public User save(User user) {
@@ -47,7 +51,17 @@ public class UserService {
   public void delete(long id) {
     User user = this.findById(id);
     userRepository.delete(user);
-
   }
 
+  public User toggleFavourite(long userId, long favouriteId)
+      throws UserNotFoundException, FavouriteNotFoundException {
+    User user = findById(userId);
+    Favourite favourite = favouriteService.findById(favouriteId);
+    if (user.getFavourites().contains(favourite)) {
+      user.getFavourites().remove(favourite);
+    } else {
+      user.getFavourites().add(favourite);
+    }
+    return userRepository.save(user);
+  }
 }

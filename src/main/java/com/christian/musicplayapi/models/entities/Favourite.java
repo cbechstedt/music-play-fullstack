@@ -30,6 +30,14 @@ public class Favourite {
   public Favourite() {
   }
 
+  public List<User> getUsers() {
+    return users;
+  }
+
+  public void setUsers(List<User> users) {
+    this.users = users;
+  }
+
   public Long getId() {
     return id;
   }

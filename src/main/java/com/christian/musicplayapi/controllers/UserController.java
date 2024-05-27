@@ -2,6 +2,7 @@ package com.christian.musicplayapi.controllers;
 
 import com.christian.musicplayapi.dtos.UserRequestDto;
 import com.christian.musicplayapi.dtos.UserResponseDto;
+import com.christian.musicplayapi.exceptions.FavouriteNotFoundException;
 import com.christian.musicplayapi.exceptions.UserNotFoundException;
 import com.christian.musicplayapi.models.entities.User;
 import com.christian.musicplayapi.services.UserService;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/register")
+@RequestMapping("/users")
 public class UserController {
 
   private final UserService userService;
@@ -64,5 +65,14 @@ public class UserController {
   public ResponseEntity<String> delete(@PathVariable("id") long id) {
     userService.delete(id);
     return ResponseEntity.status(200).body("User deleted.");
+  }
+
+  @PostMapping("/{userId}/favourites/{favouriteId}")
+  public ResponseEntity<UserResponseDto> toggleFavourite(@PathVariable("userId") long userId,
+      @PathVariable("favouriteId") long favouriteId)
+      throws UserNotFoundException, FavouriteNotFoundException {
+    User user = userService.toggleFavourite(userId, favouriteId);
+    UserResponseDto userResponseDto = UserResponseDto.entityToDto(user);
+    return ResponseEntity.status(200).body(userResponseDto);
   }
 }

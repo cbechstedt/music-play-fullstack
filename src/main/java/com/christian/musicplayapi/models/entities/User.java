@@ -39,6 +39,15 @@ public class User {
   public User() {
   }
 
+  public List<Favourite> getFavourites() {
+    return favourites;
+  }
+
+  public void setFavourites(
+      List<Favourite> favourites) {
+    this.favourites = favourites;
+  }
+
   public Long getId() {
     return id;
   }
