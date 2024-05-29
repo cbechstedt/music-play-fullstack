@@ -24,10 +24,10 @@ public class User {
   private String username;
 
   @ManyToMany
-  @JoinTable(name = "user_favourite",
+  @JoinTable(name = "user_favorite",
       joinColumns = @JoinColumn(name = "user_id"),
-      inverseJoinColumns = @JoinColumn(name = "favourite_id"))
-  private List<Favourite> favourites;
+      inverseJoinColumns = @JoinColumn(name = "favorite_id"))
+  private List<Favorite> favorites;
 
   public User(Long id, String email, String password, String username) {
     this.id = id;
@@ -39,13 +39,13 @@ public class User {
   public User() {
   }
 
-  public List<Favourite> getFavourites() {
-    return favourites;
+  public List<Favorite> getFavorites() {
+    return favorites;
   }
 
-  public void setFavourites(
-      List<Favourite> favourites) {
-    this.favourites = favourites;
+  public void setFavorites(
+      List<Favorite> favorites) {
+    this.favorites = favorites;
   }
 
   public Long getId() {

@@ -12,8 +12,8 @@ public class ControllerAdviceHandler {
     return ResponseEntity.status(404).body(e.getMessage());
   }
 
-  @ExceptionHandler(FavouriteNotFoundException.class)
-  public ResponseEntity<String> handleFavouriteNotFound(FavouriteNotFoundException e) {
+  @ExceptionHandler(FavoriteNotFoundException.class)
+  public ResponseEntity<String> handleFavoriteNotFound(FavoriteNotFoundException e) {
     return ResponseEntity.status(404).body(e.getMessage());
   }
 }

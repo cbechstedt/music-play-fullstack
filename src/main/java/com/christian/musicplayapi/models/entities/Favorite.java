@@ -10,24 +10,24 @@ import jakarta.persistence.Table;
 import java.util.List;
 
 @Entity
-@Table(name = "favourites")
-public class Favourite {
+@Table(name = "favorites")
+public class Favorite {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private String name;
 
-  @ManyToMany(mappedBy = "favourites")
+  @ManyToMany(mappedBy = "favorites")
   @JsonIgnore
   private List<User> users;
 
-  public Favourite(Long id, String name) {
+  public Favorite(Long id, String name) {
     this.id = id;
     this.name = name;
   }
 
-  public Favourite() {
+  public Favorite() {
   }
 
   public List<User> getUsers() {

@@ -1,9 +1,9 @@
 package com.christian.musicplayapi.services;
 
 import com.christian.musicplayapi.dtos.UserRequestDto;
-import com.christian.musicplayapi.exceptions.FavouriteNotFoundException;
+import com.christian.musicplayapi.exceptions.FavoriteNotFoundException;
 import com.christian.musicplayapi.exceptions.UserNotFoundException;
-import com.christian.musicplayapi.models.entities.Favourite;
+import com.christian.musicplayapi.models.entities.Favorite;
 import com.christian.musicplayapi.models.entities.User;
 import com.christian.musicplayapi.models.repositories.UserRepository;
 import java.util.List;
@@ -15,12 +15,12 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
   private final UserRepository userRepository;
-  private final FavouriteService favouriteService;
+  private final FavoriteService favoriteService;
 
   @Autowired
-  public UserService(UserRepository userRepository, FavouriteService favouriteService) {
+  public UserService(UserRepository userRepository, FavoriteService favoriteService) {
     this.userRepository = userRepository;
-    this.favouriteService = favouriteService;
+    this.favoriteService = favoriteService;
   }
 
   public User save(User user) {
@@ -53,14 +53,14 @@ public class UserService {
     userRepository.delete(user);
   }
 
-  public User toggleFavourite(long userId, long favouriteId)
-      throws UserNotFoundException, FavouriteNotFoundException {
+  public User toggleFavorite(long userId, long favoriteId)
+      throws UserNotFoundException, FavoriteNotFoundException {
     User user = findById(userId);
-    Favourite favourite = favouriteService.findById(favouriteId);
-    if (user.getFavourites().contains(favourite)) {
-      user.getFavourites().remove(favourite);
+    Favorite favorite = favoriteService.findById(favoriteId);
+    if (user.getFavorites().contains(favorite)) {
+      user.getFavorites().remove(favorite);
     } else {
-      user.getFavourites().add(favourite);
+      user.getFavorites().add(favorite);
     }
     return userRepository.save(user);
   }

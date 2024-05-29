@@ -2,7 +2,7 @@ package com.christian.musicplayapi.controllers;
 
 import com.christian.musicplayapi.dtos.UserRequestDto;
 import com.christian.musicplayapi.dtos.UserResponseDto;
-import com.christian.musicplayapi.exceptions.FavouriteNotFoundException;
+import com.christian.musicplayapi.exceptions.FavoriteNotFoundException;
 import com.christian.musicplayapi.exceptions.UserNotFoundException;
 import com.christian.musicplayapi.models.entities.User;
 import com.christian.musicplayapi.services.UserService;
@@ -67,11 +67,11 @@ public class UserController {
     return ResponseEntity.status(200).body("User deleted.");
   }
 
-  @PostMapping("/{userId}/favourites/{favouriteId}")
-  public ResponseEntity<UserResponseDto> toggleFavourite(@PathVariable("userId") long userId,
-      @PathVariable("favouriteId") long favouriteId)
-      throws UserNotFoundException, FavouriteNotFoundException {
-    User user = userService.toggleFavourite(userId, favouriteId);
+  @PostMapping("/{userId}/favorites/{favoriteId}")
+  public ResponseEntity<UserResponseDto> toggleFavorite(@PathVariable("userId") long userId,
+      @PathVariable("favoriteId") long favoriteId)
+      throws UserNotFoundException, FavoriteNotFoundException {
+    User user = userService.toggleFavorite(userId, favoriteId);
     UserResponseDto userResponseDto = UserResponseDto.entityToDto(user);
     return ResponseEntity.status(200).body(userResponseDto);
   }
