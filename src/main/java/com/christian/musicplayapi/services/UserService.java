@@ -5,6 +5,7 @@ import com.christian.musicplayapi.exceptions.FavoriteNotFoundException;
 import com.christian.musicplayapi.exceptions.UserNotFoundException;
 import com.christian.musicplayapi.models.entities.Favorite;
 import com.christian.musicplayapi.models.entities.User;
+import com.christian.musicplayapi.models.repositories.FavoriteRepository;
 import com.christian.musicplayapi.models.repositories.UserRepository;
 import java.util.List;
 import java.util.Optional;
@@ -15,12 +16,13 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
   private final UserRepository userRepository;
-  private final FavoriteService favoriteService;
+  private final FavoriteRepository favoriteRepository;
 
   @Autowired
-  public UserService(UserRepository userRepository, FavoriteService favoriteService) {
+  public UserService(UserRepository userRepository, FavoriteService favoriteService,
+      FavoriteRepository favoriteRepository) {
     this.userRepository = userRepository;
-    this.favoriteService = favoriteService;
+    this.favoriteRepository = favoriteRepository;
   }
 
   public User save(User user) {
@@ -53,15 +55,24 @@ public class UserService {
     userRepository.delete(user);
   }
 
-  public User toggleFavorite(long userId, long favoriteId)
-      throws UserNotFoundException, FavoriteNotFoundException {
-    User user = findById(userId);
-    Favorite favorite = favoriteService.findById(favoriteId);
-    if (user.getFavorites().contains(favorite)) {
-      user.getFavorites().remove(favorite);
-    } else {
-      user.getFavorites().add(favorite);
-    }
+  public User addFavoriteToUser(long userId, long favoriteId) throws UserNotFoundException {
+    User user = userRepository.findById(userId).orElseThrow();
+    Favorite favorite = favoriteRepository.findById(favoriteId)
+        .orElseThrow();
+    user.getFavorites().add(favorite);
     return userRepository.save(user);
+  }
+
+  public User removeFavoriteFromUser(long userId, long favoriteId)
+      throws UserNotFoundException, FavoriteNotFoundException {
+    User user = userRepository.findById(userId).orElseThrow();
+    Favorite favorite = favoriteRepository.findById(favoriteId)
+        .orElseThrow();
+    user.getFavorites().remove(favorite);
+    return userRepository.save(user);
+  }
+
+  public User authenticate(String email, String password) {
+    return userRepository.findByEmailAndPassword(email, password).orElse(null);
   }
 }

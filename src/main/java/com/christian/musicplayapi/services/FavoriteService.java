@@ -38,4 +38,8 @@ public class FavoriteService {
     Favorite favorite = findById(id);
     favoriteRepository.delete(favorite);
   }
+
+  public Optional<Favorite> findByTrackId(long trackId) {
+    return favoriteRepository.findByTrackId(trackId);
+  }
 }

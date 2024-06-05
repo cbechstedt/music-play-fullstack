@@ -1,10 +1,13 @@
 package com.christian.musicplayapi.controllers;
 
+import com.christian.musicplayapi.dtos.FavoriteDto;
 import com.christian.musicplayapi.dtos.UserRequestDto;
 import com.christian.musicplayapi.dtos.UserResponseDto;
 import com.christian.musicplayapi.exceptions.FavoriteNotFoundException;
 import com.christian.musicplayapi.exceptions.UserNotFoundException;
+import com.christian.musicplayapi.models.entities.Favorite;
 import com.christian.musicplayapi.models.entities.User;
+import com.christian.musicplayapi.services.FavoriteService;
 import com.christian.musicplayapi.services.UserService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +26,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
   private final UserService userService;
+  private final FavoriteService favoriteService;
 
   @Autowired
-  public UserController(UserService userService) {
+  public UserController(UserService userService, FavoriteService favoriteService) {
     this.userService = userService;
+    this.favoriteService = favoriteService;
   }
 
   @GetMapping
@@ -67,12 +72,25 @@ public class UserController {
     return ResponseEntity.status(200).body("User deleted.");
   }
 
-  @PostMapping("/{userId}/favorites/{favoriteId}")
-  public ResponseEntity<UserResponseDto> toggleFavorite(@PathVariable("userId") long userId,
+  @PostMapping("/{userId}/favorites")
+  public ResponseEntity<UserResponseDto> addFavoriteToUser(@PathVariable("userId") long userId,
+      @RequestBody FavoriteDto favoriteDto)
+      throws UserNotFoundException {
+    Favorite favorite = favoriteDto.dtoToEntity();
+    Favorite savedFavorite = favoriteService.findByTrackId(favorite.getTrackId())
+        .orElseGet(() -> favoriteService.save(favorite));
+    User user = userService.addFavoriteToUser(userId, savedFavorite.getId());
+    UserResponseDto userResponseDto = UserResponseDto.entityToDto(user);
+    return ResponseEntity.status(201).body(userResponseDto);
+  }
+
+  @DeleteMapping("/{userId}/favorites/{favoriteId}")
+  public ResponseEntity<UserResponseDto> removeFavoriteFromUser(@PathVariable("userId") long userId,
       @PathVariable("favoriteId") long favoriteId)
       throws UserNotFoundException, FavoriteNotFoundException {
-    User user = userService.toggleFavorite(userId, favoriteId);
+    User user = userService.removeFavoriteFromUser(userId, favoriteId);
     UserResponseDto userResponseDto = UserResponseDto.entityToDto(user);
     return ResponseEntity.status(200).body(userResponseDto);
   }
+
 }

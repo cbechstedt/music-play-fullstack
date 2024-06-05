@@ -16,26 +16,28 @@ public class Favorite {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private String name;
+  private Long trackId;
+  private String trackName;
+  private String previewUrl;
+  private String artistName;
+  private String albumName;
 
   @ManyToMany(mappedBy = "favorites")
   @JsonIgnore
   private List<User> users;
 
-  public Favorite(Long id, String name) {
+  public Favorite(Long id, Long trackId, String trackName, String previewUrl, String artistName,
+      String albumName, List<User> users) {
     this.id = id;
-    this.name = name;
+    this.trackId = trackId;
+    this.trackName = trackName;
+    this.previewUrl = previewUrl;
+    this.artistName = artistName;
+    this.albumName = albumName;
+    this.users = users;
   }
 
   public Favorite() {
-  }
-
-  public List<User> getUsers() {
-    return users;
-  }
-
-  public void setUsers(List<User> users) {
-    this.users = users;
   }
 
   public Long getId() {
@@ -46,11 +48,51 @@ public class Favorite {
     this.id = id;
   }
 
-  public String getName() {
-    return name;
+  public Long getTrackId() {
+    return trackId;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setTrackId(Long trackId) {
+    this.trackId = trackId;
+  }
+
+  public String getTrackName() {
+    return trackName;
+  }
+
+  public void setTrackName(String trackName) {
+    this.trackName = trackName;
+  }
+
+  public String getPreviewUrl() {
+    return previewUrl;
+  }
+
+  public void setPreviewUrl(String previewUrl) {
+    this.previewUrl = previewUrl;
+  }
+
+  public String getArtistName() {
+    return artistName;
+  }
+
+  public void setArtistName(String artistName) {
+    this.artistName = artistName;
+  }
+
+  public String getAlbumName() {
+    return albumName;
+  }
+
+  public void setAlbumName(String albumName) {
+    this.albumName = albumName;
+  }
+
+  public List<User> getUsers() {
+    return users;
+  }
+
+  public void setUsers(List<User> users) {
+    this.users = users;
   }
 }

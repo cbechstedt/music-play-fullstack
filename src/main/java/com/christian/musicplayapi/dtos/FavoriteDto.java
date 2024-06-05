@@ -2,15 +2,21 @@ package com.christian.musicplayapi.dtos;
 
 import com.christian.musicplayapi.models.entities.Favorite;
 
-public record FavoriteDto(long id, String name) {
+public record FavoriteDto(long id, long trackId, String trackName, String previewUrl,
+                          String artistName, String albumName) {
 
   public static FavoriteDto entityToDto(Favorite favorite) {
-    return new FavoriteDto(favorite.getId(), favorite.getName());
+    return new FavoriteDto(favorite.getId(), favorite.getTrackId(), favorite.getTrackName(),
+        favorite.getPreviewUrl(), favorite.getArtistName(), favorite.getAlbumName());
   }
 
   public Favorite dtoToEntity() {
     Favorite favorite = new Favorite();
-    favorite.setName(this.name);
+    favorite.setTrackId(this.trackId);
+    favorite.setTrackName(this.trackName);
+    favorite.setPreviewUrl(this.previewUrl);
+    favorite.setArtistName(this.artistName);
+    favorite.setAlbumName(this.albumName);
     return favorite;
   }
 }
