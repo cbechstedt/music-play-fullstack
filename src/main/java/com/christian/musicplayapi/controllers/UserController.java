@@ -93,4 +93,14 @@ public class UserController {
     return ResponseEntity.status(200).body(userResponseDto);
   }
 
+  @GetMapping("/{userId}/favorites")
+  public ResponseEntity<List<FavoriteDto>> getUserFavorites(@PathVariable("userId") long userId)
+      throws UserNotFoundException {
+    User user = userService.findById(userId);
+    List<FavoriteDto> favoritesDtos = user.getFavorites().stream()
+        .map(FavoriteDto::entityToDto)
+        .toList();
+    return ResponseEntity.status(200).body(favoritesDtos);
+  }
+
 }

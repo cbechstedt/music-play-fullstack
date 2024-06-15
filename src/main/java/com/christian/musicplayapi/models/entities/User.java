@@ -9,6 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -34,9 +35,11 @@ public class User {
     this.email = email;
     this.password = password;
     this.username = username;
+    this.favorites = new ArrayList<>();
   }
 
   public User() {
+    this.favorites = new ArrayList<>();
   }
 
   public List<Favorite> getFavorites() {

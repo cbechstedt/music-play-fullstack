@@ -33,7 +33,7 @@ public class UserService {
     return userRepository.findAll();
   }
 
-  public User findById(long id) {
+  public User findById(long id) throws UserNotFoundException {
     Optional<User> user = userRepository.findById(id);
     if (user.isEmpty()) {
       throw new UserNotFoundException("User not found.");
@@ -65,12 +65,19 @@ public class UserService {
 
   public User removeFavoriteFromUser(long userId, long favoriteId)
       throws UserNotFoundException, FavoriteNotFoundException {
-    User user = userRepository.findById(userId).orElseThrow();
-    Favorite favorite = favoriteRepository.findById(favoriteId)
-        .orElseThrow();
-    user.getFavorites().remove(favorite);
+    User user = userRepository.findById(userId)
+        .orElseThrow(() -> new UserNotFoundException("User not found."));
+    Favorite favorite = favoriteRepository.findByTrackId(favoriteId)
+        .orElseThrow(() -> new FavoriteNotFoundException("Favorite not found."));
+
+    boolean removed = user.getFavorites().remove(favorite);
+    if (!removed) {
+      throw new FavoriteNotFoundException("Favorite not found in user's favorites.");
+    }
+
     return userRepository.save(user);
   }
+
 
   public User authenticate(String email, String password) {
     return userRepository.findByEmailAndPassword(email, password).orElse(null);

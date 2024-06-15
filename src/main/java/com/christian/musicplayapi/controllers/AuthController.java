@@ -1,5 +1,6 @@
 package com.christian.musicplayapi.controllers;
 
+import com.christian.musicplayapi.dtos.LoginDto;
 import com.christian.musicplayapi.dtos.UserRequestDto;
 import com.christian.musicplayapi.dtos.UserResponseDto;
 import com.christian.musicplayapi.exceptions.UserNotFoundException;
@@ -24,8 +25,8 @@ public class AuthController {
   }
 
   @PostMapping("/login")
-  public ResponseEntity<UserResponseDto> login(@RequestBody UserRequestDto userDto) {
-    User user = userService.authenticate(userDto.email(), userDto.password());
+  public ResponseEntity<UserResponseDto> login(@RequestBody LoginDto loginDto) {
+    User user = userService.authenticate(loginDto.email(), loginDto.password());
     if (user == null) {
       throw new UserNotFoundException("Invalid email or password");
     }
