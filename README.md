@@ -1,18 +1,26 @@
-# Music-Play-backend
-This project is the backend service for the Music Search application, providing APIs for user management and storing favorited songs. 
-The backend is built using Java with Spring Boot, MySQL for the database and Docker for containerization.
+# Music-Play-Application
+This project is a fullstack application that allows users to search for and listen to music previews by searching for artists. It integrates with the iTunes API to provide music data and previews. Additionally, it provides backend services for user management and storing favorited songs.
 
 ## Tools used
-Java | Spring Boot | MySQL | Docker 
+Java | Spring Boot | MySQL | Docker | React | Vite | Javascript | CSS 
 
 ## Installation
-### Running the application with Dcoker
-- Make sure Docker is installed on your machine.
-- Build the Docker image in your terminal from the project directory:
+### Prerequisites
+- Docker installed on your machine.
+### Setup
+- Navigate to the app directory:
 ```bash
-docker compose up -d
-```
-To install the project's dependencies, execute the following command:
+cd app/
+```  
+- Build the Docker image and start the containers:
 ```bash
-mvn install -DskipTests
+docker compose up -d --build
 ```
+This command will build the Docker images defined in docker-compose.yml and start the MySQL database and Spring Boot application containers.
+
+### Database Configuration
+- MySQL is used as the database for this application.
+- The database connection URL is set in application.properties.
+
+### Accessing the Application
+Once both backend and frontend are running, you can access the application in your browser: http://localhost:5173
