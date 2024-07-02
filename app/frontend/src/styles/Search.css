@@ -1,0 +1,95 @@
+.body-content {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+}
+
+.cards-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  color: rgb(255, 240, 240);
+  width: 100%;
+}
+
+.music-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 6rem;
+  height: fit-content;
+  padding: 0.7rem;
+  border-radius: 0.6rem;
+  background-color: rgb(24, 24, 24);
+}
+
+/* Media query para telas maiores (computadores) */
+@media (min-width: 768px) {
+  .cards-list {
+    gap: 30px; /* Aumente o espaçamento entre os cartões */
+  }
+
+  .music-card {
+    width: 10rem; /* Aumente o tamanho dos cartões */
+    padding: 1rem; /* Aumente o preenchimento dos cartões */
+  }
+}
+
+.music-card:hover {
+  background-color: rgb(38, 38, 38);
+}
+
+.album-title {
+  color: rgb(238, 249, 255);
+  white-space: nowrap;
+  /* Evita que o texto seja quebrado */
+  overflow: hidden;
+  /* Esconde qualquer conteúdo que ultrapasse a largura */
+  text-overflow: ellipsis;
+  /* Adiciona reticências (...) ao final do texto */
+  max-width: 100%;
+}
+
+.artist-name {
+  color: rgb(132, 147, 159);
+  font-size: 0.8rem;
+}
+
+.artist-name:hover {
+  text-decoration: underline;
+}
+
+.album-release {
+  color: rgb(132, 147, 159);
+  font-size: 0.8rem;
+}
+
+.artist-container {
+  display: flex;
+  gap: 0.2rem;
+}
+
+.album-img {
+  border-radius: 0.3rem;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.input-search {
+  height: 25px;
+  border-radius: 4px;
+}
+
+.p-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

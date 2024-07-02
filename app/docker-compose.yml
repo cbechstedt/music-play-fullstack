@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   db:
     container_name: musicplay_db
@@ -16,7 +14,7 @@ services:
   api:
     container_name: musicplay_api
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
@@ -24,6 +22,16 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/musicplay_db
     depends_on:
       - db
+
+  frontend:
+    container_name: musicplay_frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    depends_on:
+      - api
 
 volumes:
   mysql-data:
