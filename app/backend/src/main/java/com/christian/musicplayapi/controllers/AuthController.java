@@ -24,6 +24,7 @@ public class AuthController {
     this.userService = userService;
   }
 
+  
   @PostMapping("/login")
   public ResponseEntity<UserResponseDto> login(@RequestBody LoginDto loginDto) {
     User user = userService.authenticate(loginDto.email(), loginDto.password());
