@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17cbe282-2e81-4f79-9960-8c76c08eb596" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/backend/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/backend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/app/backend/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/backend/src/main/java/com/christian/musicplayapi/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/backend/src/main/java/com/christian/musicplayapi/controllers/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,19 +50,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.MusicPlayApiApplication.executor": "Run",
-    "Application.run music-play-ai.executor": "Run",
-    "Docker.app.api: Compose Deployment.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/chris/Dev-projetos/Java/music-play-api",
-    "rearrange.code.on.save": "true",
-    "settings.editor.selected.configurable": "inlay.hints"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.MusicPlayApiApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.run music-play-ai.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.app.api: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/chris/Dev-projetos/Java/music-play-api&quot;,
+    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.christian.musicplayapi.dtos" />
