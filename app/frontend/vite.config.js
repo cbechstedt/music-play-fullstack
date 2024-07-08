@@ -7,7 +7,7 @@ export default defineConfig({
     host: '0.0.0.0', // permite acessar de qualquer interface de rede
     proxy: {
       '/api': {
-        target: 'http://localhost:8080',
+        target: process.env.VITE_API_BASE_URL || 'http://localhost:8080',
         changeOrigin: true,
         secure: false
       }
