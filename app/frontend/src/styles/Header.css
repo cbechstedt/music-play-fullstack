@@ -1,23 +1,34 @@
 .header-content {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row; 
+  align-items: center; 
+  justify-content: space-around;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 10px 20px;
   color: rgb(255, 240, 240);
-  gap: 50px;
-  margin-top: 100px;
+  z-index: 1000; /* Garante que o header fique sobre outros elementos */
+}
+
+.header-content img {
+  height: 80px;
+  width: auto;
 }
 
 .user-content {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  gap: 10px;
+  color: rgb(255, 240, 240);
 }
 
 .links-content {
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 20px;
 }
 
 .btn-logout {
@@ -26,8 +37,6 @@
 
 .account {
   display: flex;
-  width: 100%;
-  justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 }

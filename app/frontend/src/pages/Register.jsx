@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { register } from '../services/backendAPI';
+import Logo from '../images/logo-musicplay.png'
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -42,6 +43,7 @@ const Register = () => {
 
   return (
     <form className="form" onSubmit={handleSubmit}>
+      <img src={Logo}/>
       <input
         type="email"
         name="email"
@@ -65,7 +67,6 @@ const Register = () => {
       />
       <button type="submit">Sign up</button>
       {inputErrorMessage && <p>{inputErrorMessage}</p>}
-      <Link to='/login'><button>Back to Login</button></Link>
     </form>
   );
 };

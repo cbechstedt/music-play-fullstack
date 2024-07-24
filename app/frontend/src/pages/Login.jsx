@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useUser } from "../context/UserContext";
 import { login } from '../services/backendAPI';
 import '../styles/Login.css';
+import Logo from '../images/logo-musicplay.png'
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -42,9 +43,14 @@ const Login = () => {
       setInputErrorMessage('Invalid email or password.');
     }
   };
+  
+  const handleLogoClick = () => {
+    navigate('/home')
+  }
 
   return (
     <form className="form" onSubmit={handleSubmit}>
+      <img src={Logo} onClick={handleLogoClick}/>
       <input
         type="email"
         name="email"

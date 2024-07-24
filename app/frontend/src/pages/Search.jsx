@@ -29,44 +29,43 @@ const Search = () => {
   const minSearchLength = 2;
 
   return (
-    <div className='content'>
+    <>
       <Header />
-      <div className='body-content'>
-        {loading ? <Loading /> : (
-          <form className='form'>
-            <input
-              className='input-search'
-              type="text"
-              placeholder="Artist name"
-              onChange={handleChange}
-              value={inputSearch}
-            />
-            <button
-              type="submit"
-              onClick={handleClick}
-              disabled={inputSearch.length < minSearchLength}
-            >
-              Search
-            </button>
-          </form>
-        )}
+        <div className='body-content'>
+          {loading ? <Loading /> : (
+            <form className='form'>
+              <input
+                className='input-search'
+                type="text"
+                placeholder="Artist name"
+                onChange={handleChange}
+                value={inputSearch}
+              />
+              <button
+                type="submit"
+                onClick={handleClick}
+                disabled={inputSearch.length < minSearchLength}
+              >
+                Search
+              </button>
+            </form>
+          )}
 
-        {apiResponse && <p className='p-search'>{`Albums result for ${savedArtist}`}</p>}
-        <div className='cards-list'>
+          {apiResponse && <p className='p-search'>{`Albums result for ${savedArtist}`}</p>}
+          <div className='cards-list'>
 
-          {albumsList.length > 0 ? (
-            albumsList.map((album) => (
-              <div>
-                <AlbumCard key={album.collectionId} album={album} />
-              </div>
-            ))
-          ) : null}
-          {!loading && !apiResponse && <p>Search for an artist to get started</p>}
-          {!loading && apiResponse && albumsList.length === 0 && <p>No albums found</p>}
+            {albumsList.length > 0 ? (
+              albumsList.map((album) => (
+                <div>
+                  <AlbumCard key={album.collectionId} album={album} />
+                </div>
+              ))
+            ) : null}
+            {!loading && !apiResponse && <p>Search for an artist to get started</p>}
+            {!loading && apiResponse && albumsList.length === 0 && <p>No albums found</p>}
+          </div>
         </div>
-      </div>
-
-    </div>
+    </>
   );
 };
 
