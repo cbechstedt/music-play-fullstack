@@ -41,9 +41,13 @@ const Register = () => {
     }
   };
 
+  const handleLogoClick = () => {
+    navigate('/home')
+  }
+
   return (
     <form className="form" onSubmit={handleSubmit}>
-      <img src={Logo}/>
+      <img src={Logo} onClick={handleLogoClick} />
       <input
         type="email"
         name="email"
