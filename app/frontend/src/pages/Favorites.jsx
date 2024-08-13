@@ -27,9 +27,9 @@ const Favorites = () => {
   }, [userId]);
 
   return (
-    <div className='content'>
+    <>
       <Header />
-      <div>
+      <div className='content'>
         <h2 className='favorite-title'>Favorite Songs</h2>
         {loading ? (
           <Loading />
@@ -50,7 +50,7 @@ const Favorites = () => {
           <p>No favorite songs yet.</p>
         )}
       </div>
-    </div>
+    </>
   );
 };
 
