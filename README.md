@@ -26,7 +26,8 @@ This command will build the Docker images defined in docker-compose.yml and star
 Once both backend and frontend are running, you can access the application in your browser: http://localhost:5173
 
 ## Deployment
-The application has been deployed and can be accessed via the following link: https://music-play-fullstack.vercel.app/
+The application is deployed and accessible at the following link: [Music Play.](https://music-play-fullstack.vercel.app/)
+Please note that since this application is hosted on a free plan, it may take a minute to become fully responsive upon your first interaction. This delay is due to the server's initial startup time.
 ### Hosting Details
 Frontend: The frontend of the application is hosted on Vercel.
 Backend: The backend of the application is hosted on Render.
