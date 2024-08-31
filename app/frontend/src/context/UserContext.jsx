@@ -9,9 +9,14 @@ export const UserProvider = ({ children }) => {
     setUser(userData);
   };
 
+  const logout = () => {
+    setUser({});
+  };
+
   const values = {
     user,
     onLogin,
+    logout,
     isLoggedIn: !!user && !!user.id // Verifica se o usuário está logado
   };
 

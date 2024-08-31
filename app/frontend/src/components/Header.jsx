@@ -5,10 +5,12 @@ import '../styles/Header.css'
 import Logo from '../images/logo-musicplay.png'
 
 const Header = () => {
-  const { user: {username} } = useUser();
+  const { user: { username }, isLoggedIn, logout } = useUser();
+
   const navigate = useNavigate();
 
   const handleLogOut = () => {
+    logout();
     navigate('/');
   }
 
@@ -21,7 +23,7 @@ const Header = () => {
   }
 
   const handleLogoClick = () => {
-    navigate('/home')
+    navigate('/search')
   }
 
   return (
@@ -36,18 +38,26 @@ const Header = () => {
         <Link to="/search">Search</Link>
         <Link to="/favorites">Favorites</Link>
       </div>
-      <div className='account'>
-        <button onClick={handleLogIn}>Log in</button>
-        <button onClick={handleSignUp}>Sign up</button>
-        {/* <span className='user-content'>
-          {`Welcome, ${username}`}
-        </span>
-        <button className='btn-logout' onClick={handleLogOut}>
-          Log out
-        </button> */}
+      <div>
+        {isLoggedIn ? 
+        <div className='account'>
+          <p>{username}</p>
+          <button onClick={handleLogOut}>Log out</button>
+        </div> :
+        <div className='account'>
+          <button onClick={handleLogIn}>Log in</button>
+          <button onClick={handleSignUp}>Sign up</button>
+        </div>}
       </div>
     </header>
   );
 };
 
 export default Header;
+
+{/* <span className='user-content'>
+  {`Welcome, ${username}`}
+</span>
+<button className='btn-logout' onClick={handleLogOut}>
+  Log out
+</button> */}

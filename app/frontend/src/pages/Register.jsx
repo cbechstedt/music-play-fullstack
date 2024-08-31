@@ -35,7 +35,7 @@ const Register = () => {
 
     try {
       await register(formData);
-      navigate('/login');
+      navigate('/');
     } catch (error) {
       setInputErrorMessage('Error during registration.');
     }

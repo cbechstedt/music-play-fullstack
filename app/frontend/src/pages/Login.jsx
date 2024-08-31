@@ -45,7 +45,7 @@ const Login = () => {
   };
   
   const handleLogoClick = () => {
-    navigate('/home')
+    navigate('/search')
   }
 
   return (

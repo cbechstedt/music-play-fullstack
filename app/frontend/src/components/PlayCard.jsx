@@ -12,7 +12,7 @@ import '../styles/PlayCard.css';
 const PlayCard = ({ trackName, previewUrl, trackId, artistName, album }) => {
   const [favoriteChecked, setFavoriteChecked] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { user: { id: userId } } = useUser();
+  const { user: { id: userId }, isLoggedIn } = useUser();
 
 
   useEffect(() => {
@@ -43,7 +43,11 @@ const PlayCard = ({ trackName, previewUrl, trackId, artistName, album }) => {
       }
     } catch (error) {
       console.error("Failed to toggle favorite", error);
-      toast.error('Failed to update favorites');
+      if (!isLoggedIn) {
+        toast.error('Please log in to add favorites');
+      } else {
+        toast.error('Failed to update favorites');
+      }
     } finally {
       setLoading(false);
     }
